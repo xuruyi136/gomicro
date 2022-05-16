@@ -1,0 +1,29 @@
+//指定版本
+syntax = "proto3";
+
+//包名，通过protoc生成时go文件时
+option go_package = "./;user";
+//请求结构
+message UserRegistryRequest{
+    string username = 1 ;
+    string password = 2 ;
+    string email = 3 ;
+}
+//请求结构
+message UserLoginRequest{
+    string username = 1 ;
+    string password = 2 ;
+}
+
+//回复结构
+message UserLoginResponse{
+    string message = 1 ;
+    string token = 2 ;
+}
+
+
+//接口
+service User{
+    rpc UserRegistry (UserRegistryRequest) returns(UserLoginResponse){}
+    rpc UserLogin (UserLoginRequest) returns(UserLoginResponse){}
+}
